@@ -22,8 +22,8 @@
 <body class="position-absolute top-50 start-50 translate-middle">
     <div class="container text-center">
         <div class="row align-items-center gap-2">
-            <a class="btn btn-primary btn-lg" href="/login.php" role="button">Admin</a>
-            <a class="btn btn-primary btn-lg" href="all-posts.php" role="button">User</a>
+            <a class="btn btn-primary btn-lg" href="/dashboard.php" role="button">Admin</a>
+            <a class="btn btn-primary btn-lg" href="/login.php" role="button">User</a>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
