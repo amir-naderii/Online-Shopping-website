@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="utf-8">
 	<meta name="author" content="Muhamad Nauval Azhar">
@@ -25,7 +26,7 @@
 									<label class="mb-2 text-muted" for="name">Name</label>
 									<input id="name" type="text" class="form-control" name="name" value="" required autofocus>
 									<div class="invalid-feedback">
-										Name is required	
+										Name is required
 									</div>
 								</div>
 
@@ -40,9 +41,9 @@
 								<div class="mb-3">
 									<label class="mb-2 text-muted" for="password">Password</label>
 									<input id="password" type="password" class="form-control" name="password" required>
-								    <div class="invalid-feedback">
-								    	Password is required
-							    	</div>
+									<div class="invalid-feedback">
+										Password is required
+									</div>
 								</div>
 
 								<p class="form-text text-muted mb-3">
@@ -51,7 +52,7 @@
 
 								<div class="align-items-center d-flex">
 									<button type="submit" class="btn btn-primary ms-auto">
-										Register	
+										Register
 									</button>
 								</div>
 							</form>
@@ -63,7 +64,7 @@
 						</div>
 					</div>
 					<div class="text-center mt-5 text-muted">
-						Copyright &copy; 2017-2021 &mdash; Your Company 
+						Copyright &copy; 2017-2021 &mdash; Your Company
 					</div>
 				</div>
 			</div>
@@ -72,4 +73,5 @@
 
 	<script src="js/login.js"></script>
 </body>
+
 </html>

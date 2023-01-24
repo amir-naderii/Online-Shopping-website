@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="utf-8">
 	<meta name="author" content="Muhamad Nauval Azhar">
@@ -37,9 +38,9 @@
 										</a>
 									</div>
 									<input id="password" type="password" class="form-control" name="password" required>
-								    <div class="invalid-feedback">
-								    	Password is required
-							    	</div>
+									<div class="invalid-feedback">
+										Password is required
+									</div>
 								</div>
 
 								<div class="d-flex align-items-center">
@@ -60,7 +61,7 @@
 						</div>
 					</div>
 					<div class="text-center mt-5 text-muted">
-						Copyright &copy; 2017-2021 &mdash; Your Company 
+						Copyright &copy; 2017-2021 &mdash; Your Company
 					</div>
 				</div>
 			</div>
@@ -69,4 +70,5 @@
 
 	<script src="js/login.js"></script>
 </body>
+
 </html>
