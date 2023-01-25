@@ -15,48 +15,54 @@
 </head>
 
 <body style="background-color:navy;">
-    <form style="margin: 5% 25% 0% 25%; background-color: white; padding:1rem; border-radius:1rem;">
-        <!-- 2 column grid layout with text inputs for the first and last names -->
-        <div class="row mb-4">
-            <div class="col">
-                <div class="form-outline">
-                    <input type="text" id="form6Example1" class="form-control" />
-                    <label class="form-label" for="form6Example1">Item name</label>
-                </div>
+    <div class="container-fluid">
+        <div class="row flex-nowrap">
+            <?php include "admin_sidebar.php" ?>
+            <div class="col py-3">
+                <form style="margin: 5% 25% 0% 25%; background-color: white; padding:1rem; border-radius:1rem;">
+                    <!-- 2 column grid layout with text inputs for the first and last names -->
+                    <div class="row mb-4">
+                        <div class="col">
+                            <div class="form-outline">
+                                <input type="text" id="form6Example1" class="form-control" />
+                                <label class="form-label" for="form6Example1">Item name</label>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-outline">
+                                <input type="text" id="form6Example2" class="form-control" />
+                                <label class="form-label" for="form6Example2">Price</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-outline mb-4">
+                        <input type="number" id="form6Example6" class="form-control" />
+                        <label class="form-label" for="form6Example6">Available Items</label>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1">Category</label>
+                        <select class="form-control" id="exampleFormControlSelect1">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                        </select>
+                    </div>
+                    <div class="form-group" style="margin-top:2rem;">
+                        <label for="exampleFormControlFile1">Picture</label><br>
+                        <input type="file" class="form-control-file" id="exampleFormControlFile1" accept="image/*">
+                    </div>
+
+                    <!-- Submit button -->
+                    <button type="submit" class="btn btn-primary btn-block mb-4" style="margin-top:2rem;">Add</button>
+                </form>
             </div>
-            <div class="col">
-                <div class="form-outline">
-                    <input type="text" id="form6Example2" class="form-control" />
-                    <label class="form-label" for="form6Example2">Price</label>
-                </div>
-            </div>
         </div>
-
-        <div class="form-outline mb-4">
-            <input type="number" id="form6Example6" class="form-control" />
-            <label class="form-label" for="form6Example6">Available Items</label>
-        </div>
-
-
-        <div class="form-group">
-            <label for="exampleFormControlSelect1">Category</label>
-            <select class="form-control" id="exampleFormControlSelect1">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-            </select>
-        </div>
-        <div class="form-group" style="margin-top:2rem;">
-            <label for="exampleFormControlFile1">Picture</label><br>
-            <input type="file" class="form-control-file" id="exampleFormControlFile1" accept="image/*">
-        </div>
-
-        <!-- Submit button -->
-        <button type="submit" class="btn btn-primary btn-block mb-4" style="margin-top:2rem;">Add</button>
-    </form>
-
+    </div>
 </body>
 
 </html>
