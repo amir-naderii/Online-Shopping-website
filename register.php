@@ -23,10 +23,10 @@
 							<h1 class="fs-4 card-title fw-bold mb-4">Register</h1>
 							<form method="POST" class="needs-validation" novalidate="" autocomplete="off">
 								<div class="mb-3">
-									<label class="mb-2 text-muted" for="name">Name</label>
+									<label class="mb-2 text-muted" for="name">UserName</label>
 									<input id="name" type="text" class="form-control" name="name" value="" required autofocus>
 									<div class="invalid-feedback">
-										Name is required
+										UserName is required
 									</div>
 								</div>
 

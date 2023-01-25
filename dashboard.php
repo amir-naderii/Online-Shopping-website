@@ -13,27 +13,27 @@
         <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">title</th>
-                <th scope="col">Author</th>
+                <th scope="col">Item Name</th>
+                <th scope="col">Price</th>
                 <th scope="col">Option</th>
             </tr>
         </thead>
         <tbody>
             <?php
             $cnt = 1;
-            foreach ($posts as $post) {
+            foreach ($items as $item) {
                 echo '<tr>
                     <th scope="row">' . $cnt . '</th>
-                    <td>' . $post['title'] . '</td>
-                    <td>' . $post['author'] . '</td>
+                    <td>' . $item['name'] . '</td>
+                    <td>' . $item['price'] . '</td>
                     <td class="options">
                     <form style="display: inline-block;" action="delete.php" method="get">
-                      <input type="hidden" name="delete" value="' . $post["id"] . '">
-                      <input type="hidden" name="post_del" value="post">
+                      <input type="hidden" name="delete" value="' . $item["id"] . '">
+                      <input type="hidden" name="item_del" value="post">
                       <button type="submit" class="option_butt">Delete</button>
                     </form>
                     <form style="display: inline-block;" action="post.php" method="get">
-                      <input type="hidden" name="edit" value="' . $post["id"] . '">
+                      <input type="hidden" name="edit" value="' . $item["id"] . '">
                       <button type="submit" class="option_butt">Edit</button>
                     </form>
                     </td>
