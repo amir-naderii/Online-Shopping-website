@@ -85,6 +85,11 @@ if (isset($_POST["email"]) && isset($_POST["password"])) {
 										<input type="checkbox" name="remember" id="remember" class="form-check-input">
 										<label for="remember" class="form-check-label">Remember Me</label>
 									</div>
+
+									<?php if (isset($_GET['error'])) { ?>
+										<p class="error"><?php echo $_GET['error']; ?></p>
+									<?php } ?>
+
 									<button type="submit" class="btn btn-primary ms-auto" name="login">
 										Login
 									</button>
