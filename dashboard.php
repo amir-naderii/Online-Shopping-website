@@ -27,6 +27,7 @@
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">Item Name</th>
+                            <th scope="col">Items in stock</th>
                             <th scope="col">Price</th>
                             <th scope="col">Option</th>
                         </tr>
@@ -38,6 +39,7 @@
                             echo '<tr>
                     <th scope="row">' . $cnt . '</th>
                     <td>' . $item['title'] . '</td>
+                    <td>' . $item['stock'] . '</td>
                     <td>' . $item['price'] . '</td>
                     <td class="options">
                     <form style="display: inline-block;" action="delete.php" method="get">
@@ -45,7 +47,7 @@
                       <input type="hidden" name="item_del" value="post">
                       <button type="submit" class="option_butt">Delete</button>
                     </form>
-                    <form style="display: inline-block;" action="post.php" method="get">
+                    <form style="display: inline-block;" action="edit_item.php" method="get">
                       <input type="hidden" name="edit" value="' . $item["id"] . '">
                       <button type="submit" class="option_butt">Edit</button>
                     </form>
@@ -78,7 +80,7 @@
                       <input type="hidden" name="cat_del" value="category">
                       <button type="submit" class="option_butt">Delete</button>
                     </form>
-                    <form style="display: inline-block;" action="category.php" method="get">
+                    <form style="display: inline-block;" action="edit_category.php" method="get">
                       <input type="hidden" name="edit" value="' . $cat["id"] . '">
                       <button type="submit" class="option_butt">Edit</button>
                     </form>
