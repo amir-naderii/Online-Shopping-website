@@ -11,9 +11,14 @@ if ($conn->connect_error) {
 if (isset($_POST['upload'])) {
     $title = $_POST['name'];
     $sql = "INSERT INTO categories (title) VALUES ('$title')";
-    mysqli_query($conn, $sql);
+    $exec = mysqli_query($conn, $sql);
+    if (!$exec) {
+        $msg = mysqli_error($conn);
+        // $msg = 'Failed to upload image!<br>values are not accepted.';
+    } else {
+        $msg = 'Category added successfully!';
+    }
 }
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -43,6 +48,7 @@ if (isset($_POST['upload'])) {
                         <input type="text" id="name" name="name" class="form-control" />
                         <label class="form-label" for="name">Category name</label>
                     </div>
+                    <p><?php echo $msg; ?></p>
                     <!-- Submit button -->
                     <button type="submit" class="btn btn-primary btn-block mb-4" style="margin-top:2rem;" name="upload">Add</button>
                 </form>
