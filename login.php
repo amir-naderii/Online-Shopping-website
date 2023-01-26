@@ -1,3 +1,40 @@
+<?php
+include "config/database.php";
+$conn = new mysqli('127.0.0.1', 'admin', 'admin', 'storedb');
+if ($conn->connect_error) {
+	die('connection failed: ' . $conn->connect_error);
+}
+session_start();
+
+if (isset($_POST["email"]) && isset($_POST["password"])) {
+	if (empty($_POST["email"])) {
+		header('location: login.php?error=User name is required');
+	} elseif (empty($_POST["password"])) {
+		header('location: login.php?error=password is required');
+	} else {
+		$email = $_POST["email"];
+		$pass = $_POST["password"];
+		$sql = "SELECT * FROM user WHERE email = '$email' AND password = '$pass'";
+		$result = mysqli_query($conn, $sql);
+		if (mysqli_num_rows($result) === 1) {
+			$row = mysqli_fetch_assoc($result);
+			print_r($row);
+			if ($email == $row['email'] && $pass == $row['password']) {
+				$_SESSION['Username'] = $row['username'];
+				$_SESSION['email'] = $row['email'];
+				$_SESSION['Password'] = $row['password'];
+				$_SESSION['id'] = $row['id'];
+				header('location: index.php');
+			} else {
+				header('location: login.php?error=Incorrect user name or password');
+			}
+		} else {
+			header('location: login.php?error=Incorrect user name or password');
+		}
+	}
+	exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,7 +53,7 @@
 			<div class="row justify-content-sm-center h-100">
 				<div class="col-xxl-4 col-xl-5 col-lg-5 col-md-7 col-sm-9">
 					<div class="text-center my-5">
-						<img src="https://getbootstrap.com/docs/5.0/assets/brand/bootstrap-logo.svg" alt="logo" width="100">
+						<img src="./assets/icon.jpg" alt="logo" width="100">
 					</div>
 					<div class="card shadow-lg">
 						<div class="card-body p-5">
@@ -48,7 +85,12 @@
 										<input type="checkbox" name="remember" id="remember" class="form-check-input">
 										<label for="remember" class="form-check-label">Remember Me</label>
 									</div>
-									<button type="submit" class="btn btn-primary ms-auto">
+
+									<?php if (isset($_GET['error'])) { ?>
+										<p class="error"><?php echo $_GET['error']; ?></p>
+									<?php } ?>
+
+									<button type="submit" class="btn btn-primary ms-auto" name="login">
 										Login
 									</button>
 								</div>

@@ -1,3 +1,30 @@
+<?php
+error_reporting(0);
+
+$msg = "";
+
+$conn = new mysqli('127.0.0.1', 'admin', 'admin', 'storedb');
+if ($conn->connect_error) {
+	die('connection failed: ' . $conn->connect_error);
+}
+
+if (isset($_POST['register'])) {
+	$name = $_POST['name'];
+	$email = $_POST['email'];
+	$password = $_POST['password'];
+	$sql = "INSERT INTO user (username, password, email) VALUES ('$name', '$password', '$email')";
+	$exec = mysqli_query($conn, $sql);
+	if (!$exec) {
+		$msg = mysqli_error($conn);
+		// $msg = 'Failed to upload image!<br>values are not accepted.';
+	} else {
+		header('location: login.php');
+		// $msg = 'user added successfully!';
+	}
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -51,9 +78,7 @@
 								</p>
 
 								<div class="align-items-center d-flex">
-									<button type="submit" class="btn btn-primary ms-auto">
-										Register
-									</button>
+									<button type="submit" class="btn btn-primary ms-auto" name="register">Register</button>
 								</div>
 							</form>
 						</div>
