@@ -3,10 +3,7 @@ error_reporting(0);
 
 $msg = "";
 
-$conn = new mysqli('127.0.0.1', 'admin', 'admin', 'storedb');
-if ($conn->connect_error) {
-    die('connection failed: ' . $conn->connect_error);
-}
+include 'queries.php';
 
 if (isset($_POST['upload'])) {
     $title = $_POST['name'];
@@ -26,7 +23,7 @@ if (isset($_POST['upload'])) {
     $tempname = $_FILES["pic"]["tmp_name"];
     $folder = "./image/" . $filename;
 
-    $sql = "INSERT INTO items (title, price, location, stock, category_id, score) VALUES ('$title', '$price', '$folder', '$noitem', $category, 0)";
+    $sql = "INSERT INTO items (title, price, location, stock, category_id, score) VALUES ('$title', $price, '$folder', $noitem, $category, 0)";
     $exec = mysqli_query($conn, $sql);
 
     if (!$exec) {
@@ -62,7 +59,7 @@ if (isset($_POST['upload'])) {
 
 <?php include 'queries.php' ?>
 
-<body style="background-color:navy;">
+<body style="background-color:rgb(61,77,88);">
     <div class="container-fluid">
         <div class="row flex-nowrap">
             <?php include "admin_sidebar.php" ?>

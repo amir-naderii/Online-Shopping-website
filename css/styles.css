@@ -368,8 +368,25 @@ select:disabled {
   opacity: 1;
 }
 
+.grided-items {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fill,minmax(200px,1fr));
+}
+
+.shadowy {
+  box-shadow: grey 1px 1px 5px 0.5px;
+}
+
 [list]::-webkit-calendar-picker-indicator {
   display: none;
+}
+
+.my-nav {
+  position: fixed !important;
+  width:100%;
+  z-index: 250;
+  background-color: rgba(var(--bs-dark-rgb), var(--bs-bg-opacity)) !important;
 }
 
 button,

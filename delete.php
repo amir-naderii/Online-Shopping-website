@@ -3,10 +3,7 @@ error_reporting(0);
 
 $msg = "";
 
-$conn = new mysqli('127.0.0.1', 'admin', 'admin', 'storedb');
-if ($conn->connect_error) {
-    die('connection failed: ' . $conn->connect_error);
-}
+include 'queries.php';
 
 if(isset($_GET['item_del'])){
     $sql = "DELETE FROM items WHERE id=".$_GET['delete'];

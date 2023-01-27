@@ -3,10 +3,7 @@ error_reporting(0);
 
 $msg = "";
 
-$conn = new mysqli('127.0.0.1', 'admin', 'admin', 'storedb');
-if ($conn->connect_error) {
-    die('connection failed: ' . $conn->connect_error);
-}
+include 'queries.php';
 
 $id = $_GET['edit'];
 $sql = 'SELECT * from items where id=' . $id;
@@ -75,7 +72,7 @@ if (isset($_POST['upload'])) {
 
 <?php include 'queries.php' ?>
 
-<body style="background-color:navy;">
+<body style="background-color:rgb(61,77,88);">
     <div class="container-fluid">
         <div class="row flex-nowrap">
             <?php include "admin_sidebar.php" ?>

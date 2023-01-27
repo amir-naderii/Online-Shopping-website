@@ -5,3 +5,22 @@
 */
 // This file is intentionally blank
 // Use this file to add JavaScript to your project
+
+function handle_slider_change(){
+    document.getElementById("max_text").innerText = 
+    + document.getElementById("max_range").value + "$";
+}
+
+function handle_slider_change_min(){
+    document.getElementById("min_text").innerText = 
+    + document.getElementById("min_range").value + "$";
+}
+function handle_qty_change(id){
+    console.log(id);
+}
+
+const selectElement = document.querySelector('.qty_input');
+
+selectElement.addEventListener('change', (event) => {
+    console.log(event.target.value)
+});

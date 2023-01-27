@@ -1,9 +1,5 @@
 <?php
-include "config/database.php";
-$conn = new mysqli('127.0.0.1', 'admin', 'admin', 'storedb');
-if ($conn->connect_error) {
-	die('connection failed: ' . $conn->connect_error);
-}
+include "queries.php";
 session_start();
 
 if (isset($_POST["email"]) && isset($_POST["password"])) {
@@ -81,11 +77,7 @@ if (isset($_POST["email"]) && isset($_POST["password"])) {
 								</div>
 
 								<div class="d-flex align-items-center">
-									<div class="form-check">
-										<input type="checkbox" name="remember" id="remember" class="form-check-input">
-										<label for="remember" class="form-check-label">Remember Me</label>
-									</div>
-
+									
 									<?php if (isset($_GET['error'])) { ?>
 										<p class="error"><?php echo $_GET['error']; ?></p>
 									<?php } ?>
@@ -98,12 +90,12 @@ if (isset($_POST["email"]) && isset($_POST["password"])) {
 						</div>
 						<div class="card-footer py-3 border-0">
 							<div class="text-center">
-								Don't have an account? <a href="register.php" class="text-dark">Create One</a>
+								Don't have an account? <a href="./register.php" class="text-dark">Create One</a>
 							</div>
 						</div>
 					</div>
 					<div class="text-center mt-5 text-muted">
-						Copyright &copy; 2017-2021 &mdash; Your Company
+						Copyright &copy; 2017-2021 &mdash; Hasmir
 					</div>
 				</div>
 			</div>
