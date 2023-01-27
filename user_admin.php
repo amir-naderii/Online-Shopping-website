@@ -22,7 +22,7 @@
 <body class="position-absolute top-50 start-50 translate-middle">
     <div class="container text-center">
         <div class="row align-items-center gap-2">
-            <a class="btn btn-primary btn-lg" href="dashboard.php" role="button">Admin</a>
+            <a class="btn btn-primary btn-lg" href="admin_login.php" role="button">Admin</a>
             <a class="btn btn-primary btn-lg" href="login.php" role="button">User</a>
         </div>
     </div>
