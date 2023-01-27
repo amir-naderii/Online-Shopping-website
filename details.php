@@ -41,6 +41,15 @@
             echo $msg;
         }
         header('location: details.php?id='.$_GET['id']);
+    }
+    if(isset($_POST["add_wish"])){
+        $sql = "INSERT INTO `wishlist`(`user_id`,`item_id`) 
+        VALUES(".$_SESSION['id'].",".$_POST['add_wish'].")";
+        $exec = mysqli_query($conn,$sql);
+        if(!$exec){
+            $msg = mysqli_error($conn);
+            echo $msg;
+        }
     } 
     if(isset($_POST['review'])){
         $sql = "INSERT INTO `reviews`(`user_id`,`item_id`,`comment`) 
@@ -116,6 +125,15 @@
                             <button class="btn btn-outline-dark flex-shrink-0" type="submit">
                                 <i class="bi-cart-fill me-1"></i>
                                 Add to cart
+                            </button>                           
+                        </div>
+                        </form>
+                        <form <?php echo 'action="details.php?id='.$_GET['id'].'"'?> method="post" >
+                        <div class="d-flex" style="margin-top:1rem;">
+                            <input name="add_wish" type="hidden" <?php echo 'value="'.$theItem['id'].'"'?> >
+                            <button class="btn btn-outline-dark flex-shrink-0" type="submit">
+                                <i class="bi-heart me-1"></i>
+                                Add to wish list
                             </button>                           
                         </div>
                         </form>
