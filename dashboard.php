@@ -1,3 +1,11 @@
+<?php
+session_start();
+if(!isset($_SESSION['Username']) || !isset($_SESSION['Password'])){
+    session_unset();
+    session_destroy();
+    header("location: admin_login.php");
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
