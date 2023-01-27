@@ -6,6 +6,20 @@
         session_destroy();
         header("location: login.php");
     }
+    $sql = "SELECT * FROM cart WHERE user_id =".$_SESSION['id'];
+    $res = mysqli_query($conn,$sql);
+    $cart_list = [];
+    while($row = mysqli_fetch_assoc($res)){
+        $cart_list[] = $row;
+    }
+    $cart_num = count($cart_list);
+    $sql = "SELECT * FROM wishlist WHERE user_id =".$_SESSION['id'];
+    $res = mysqli_query($conn,$sql);
+    $wish_list = [];
+    while($row = mysqli_fetch_assoc($res)){
+        $wish_list[] = $row;
+    }
+    $wish_num = count($wish_list);
     $sql = 'SELECT * FROM items WHERE id = '.$_GET['id'];
     $res = mysqli_query($conn,$sql);
     $theItem = mysqli_fetch_assoc($res);
@@ -18,10 +32,19 @@
     while($row = mysqli_fetch_assoc($res)){
         $reviews[] = $row; 
     }
+    if(isset($_POST['cart'])){
+        $sql = "INSERT INTO `cart`(`user_id`,`item_id`) 
+        VALUES(".$_SESSION['id'].",".$_GET['id'].")";
+        $exec = mysqli_query($conn,$sql);
+        if(!$exec){
+            $msg = mysqli_error($conn);
+            echo $msg;
+        }
+        header('location: details.php?id='.$_GET['id']);
+    } 
     if(isset($_POST['review'])){
         $sql = "INSERT INTO `reviews`(`user_id`,`item_id`,`comment`) 
         VALUES(".$_SESSION['id'].",".$_GET['id'].",'".$_POST['review']."')";
-        echo '$sql';
         $exec = mysqli_query($conn,$sql);
         if(!$exec){
             $msg = mysqli_error($conn);
@@ -50,27 +73,32 @@
     <body>
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark my-nav">
-            <div class="container px-4 px-lg-5">
-                <a class="navbar-brand" href="index.php">Start Bootstrap</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="index.php">Home</a></li>
-                    </ul>
-                    <form class="d-flex">
+        <div class="container px-4 px-lg-5">
+            <a class="navbar-brand" href="index.php">Start Bootstrap</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="index.php">Home</a></li>
+                </ul>
+                <form class="d-flex">
+                <a class="btn btn-outline-light" href="cart.php" type="submit" style="margin-right:1rem;">
+                        <i class="bi-cart-fill me-1"></i>
+                        Cart
+                        <span class="badge bg-dark text-white ms-1 rounded-pill"><?php echo $cart_num ?></span>
+                    </a>
+                    <a class="btn btn-outline-light" href="wish_list.php" type="submit" style="margin-right:1rem;">
+                        <i class="bi bi-heart me-1"></i>
+                        Wishes
+                        <span class="badge bg-dark text-white ms-1 rounded-pill"><?php echo $wish_num ?></span>
+                    </a>
                     <a class="btn btn-outline-light" href="logout.php" style="margin-right:2px;">
                         <i class="bi bi-person-circle me-1"></i>
                         Logout
                     </a>
-                    <a class="btn btn-outline-light" href="cart.php">
-                        <i class="bi-cart-fill me-1"></i>
-                        Cart
-                        <span class="badge bg-light text-black ms-1 rounded-pill">0</span>
-                    </a>
-                    </form>
-                </div>
+                </form>
             </div>
-        </nav>
+        </div>
+    </nav>
         <!-- Product section-->
         <section class="py-5">
             <div class="container px-4 px-lg-5 my-5">
@@ -82,12 +110,15 @@
                         <div class="fs-5 mb-5">
                             <span><?php echo $theItem['price']."$" ?></span>
                         </div>
+                        <form <?php echo 'action="details.php?id='.$_GET['id'].'"'?> method="post" >
                         <div class="d-flex">
-                            <button class="btn btn-outline-dark flex-shrink-0" type="button">
+                            <input name="cart" type="hidden" <?php echo 'value="'.$theItem['id'].'"'?> >
+                            <button class="btn btn-outline-dark flex-shrink-0" type="submit">
                                 <i class="bi-cart-fill me-1"></i>
                                 Add to cart
-                            </button>
+                            </button>                           
                         </div>
+                        </form>
                     </div>
                 </div>
             </div>

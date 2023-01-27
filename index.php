@@ -6,6 +6,20 @@
         session_destroy();
         header("location: login.php");
     }
+    $sql = "SELECT * FROM cart WHERE user_id =".$_SESSION['id'];
+    $res = mysqli_query($conn,$sql);
+    $cart_list = [];
+    while($row = mysqli_fetch_assoc($res)){
+        $cart_list[] = $row;
+    }
+    $cart_num = count($cart_list);
+    $sql = "SELECT * FROM wishlist WHERE user_id =".$_SESSION['id'];
+    $res = mysqli_query($conn,$sql);
+    $wish_list = [];
+    while($row = mysqli_fetch_assoc($res)){
+        $wish_list[] = $row;
+    }
+    $wish_num = count($wish_list);
     $filter = [];
     foreach($categories as $cat){
         if(isset($_POST[$cat['id']])){
@@ -66,21 +80,26 @@
     <!-- Navigation-->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark my-nav">
         <div class="container px-4 px-lg-5">
-            <a class="navbar-brand" href="#!">Start Bootstrap</a>
+            <a class="navbar-brand" href="index.php">Start Bootstrap</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
                     <li class="nav-item"><a class="nav-link active" aria-current="page" href="index.php">Home</a></li>
                 </ul>
                 <form class="d-flex">
+                <a class="btn btn-outline-light" href="cart.php" type="submit" style="margin-right:1rem;">
+                        <i class="bi-cart-fill me-1"></i>
+                        Cart
+                        <span class="badge bg-dark text-white ms-1 rounded-pill"><?php echo $cart_num ?></span>
+                    </a>
+                    <a class="btn btn-outline-light" href="wish_list.php" type="submit" style="margin-right:1rem;">
+                        <i class="bi bi-heart me-1"></i>
+                        Wishes
+                        <span class="badge bg-dark text-white ms-1 rounded-pill"><?php echo $wish_num ?></span>
+                    </a>
                     <a class="btn btn-outline-light" href="logout.php" style="margin-right:2px;">
                         <i class="bi bi-person-circle me-1"></i>
                         Logout
-                    </a>
-                    <a class="btn btn-outline-light" href="cart.php" type="submit">
-                        <i class="bi-cart-fill me-1"></i>
-                        Cart
-                        <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
                     </a>
                 </form>
             </div>
@@ -91,7 +110,7 @@
         <div class="container px-4 px-lg-5 my-5">
             <div class="text-center text-white">
                 <h1 class="display-4 fw-bolder">Shop in style</h1>
-                <p class="lead fw-normal text-white-50 mb-0">With this shop hompeage template</p>
+                <p class="lead fw-normal text-white-50 mb-0">With this shop hompeage website</p>
             </div>
         </div>
     </header>

@@ -18,9 +18,3 @@ function handle_slider_change_min(){
 function handle_qty_change(id){
     console.log(id);
 }
-
-const selectElement = document.querySelector('.qty_input');
-
-selectElement.addEventListener('change', (event) => {
-    console.log(event.target.value)
-});
