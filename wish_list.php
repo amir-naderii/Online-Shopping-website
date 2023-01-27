@@ -114,13 +114,21 @@ session_start();
                                             <p><strong>'. $object['title'] .'</strong></p>
                                                 <a href="delete_wish.php?id='.$its["id"].'" type="button" class="btn btn-primary btn-sm me-1 mb-2" data-mdb-toggle="tooltip" title="Remove item">
                                                 <i class="bi bi-trash-fill"></i>
-                                                </a>
-                                                <form method="post" action="wish_list.php">
+                                                </a>';
+                                                
+                                                if ($object['stock'] == 0) {
+                                                    echo '<p>sold out</p>';
+                                                } else {
+                                                
+
+                                            echo '<form method="post" action="wish_list.php">
                                                 <input type="hidden" value="'.$object["id"].'" name="add_cart">
                                                 <button type="submit" class="btn btn-danger btn-sm mb-2" data-mdb-toggle="tooltip" title="Move to the cart">
                                                 <i class="bi bi-cart-fill"></i>
-                                                </button>
-                                                </form> 
+                                                </button>';
+                                                }
+
+                                            echo '</form> 
                                     <!-- Data -->
                                         </div>
 
