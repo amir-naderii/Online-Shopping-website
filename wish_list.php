@@ -119,14 +119,18 @@ session_start();
                                                 if ($object['stock'] == 0) {
                                                     echo '<p>sold out</p>';
                                                 } else {
-                                                
+                                                    $sql = "SELECT * FROM cart WHERE user_id=".$_SESSION['id']." AND item_id =".$object['id'];
+                                                    $res = mysqli_query($conn,$sql);
+                                                    if(mysqli_num_rows($res) == 1){
+                                                        echo '<p>already in cart</p>';
+                                                    }else{
 
                                             echo '<form method="post" action="wish_list.php">
                                                 <input type="hidden" value="'.$object["id"].'" name="add_cart">
                                                 <button type="submit" class="btn btn-danger btn-sm mb-2" data-mdb-toggle="tooltip" title="Move to the cart">
                                                 <i class="bi bi-cart-fill"></i>
                                                 </button>';
-                                                }
+                                                }}
 
                                             echo '</form> 
                                     <!-- Data -->

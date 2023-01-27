@@ -10,22 +10,18 @@ if (isset($_POST['upload'])) {
     $price = $_POST['price'];
     $noitem = $_POST['noitem'];
     $category = $_POST['category'];
-
+    print_r($_FILES);
     $query = "select id from categories where title='$category'";
     $result = mysqli_query($conn, $query);
     $row = mysqli_fetch_assoc($result);
     $category = (int) $row['id'];
-
     $filename = $_FILES["pic"]["name"];
-    print_r($_FILES['pic']);
     $temp = explode(".", $filename);
     $filename = $title . rand() . '.' . end($temp);
     $tempname = $_FILES["pic"]["tmp_name"];
-    $folder = "./image/" . $filename;
-
-    $sql = "INSERT INTO items (title, price, location, stock, category_id, score) VALUES ('$title', $price, '$folder', $noitem, $category, 0)";
+    $folder = "./pics/" . $filename;
+    $sql = "INSERT INTO items (title, price, location, stock, category_id) VALUES ('$title', $price, '$folder', $noitem, $category)";
     $exec = mysqli_query($conn, $sql);
-
     if (!$exec) {
         $msg = mysqli_error($conn);
         print_r($msg);
@@ -64,7 +60,7 @@ if (isset($_POST['upload'])) {
         <div class="row flex-nowrap">
             <?php include "admin_sidebar.php" ?>
             <div class="col py-3">
-                <form style="margin: 5% 25% 0% 25%; background-color: white; padding:1rem; border-radius:1rem;" method="POST">
+                <form style="margin: 5% 25% 0% 25%; background-color: white; padding:1rem; border-radius:1rem;" method="POST" action="add_item.php" enctype='multipart/form-data'>
                     <!-- 2 column grid layout with text inputs for the first and last names -->
                     <div class="row mb-4">
                         <div class="col">
@@ -99,7 +95,7 @@ if (isset($_POST['upload'])) {
                     </div>
                     <div class="form-group" style="margin-top:2rem;">
                         <label for="pic">Picture</label><br>
-                        <input type="file" class="form-control-file" id="item-pic" accept="image/*" name="pic" value="">
+                        <input type="file" class="form-control-file" accept="images/*" name="pic">
                     </div>
 
                     <p><?php echo $msg; ?></p>

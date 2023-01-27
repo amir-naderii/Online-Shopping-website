@@ -126,12 +126,22 @@ $objects = [];
                                             <p><strong>' . $object['title'] . '</strong></p>
                                                 <a href="delete_cart.php?id=' . $its["id"] . '" type="button" class="btn btn-primary btn-sm me-1 mb-2" data-mdb-toggle="tooltip" title="Remove item">
                                                 <i class="bi bi-trash-fill"></i>
-                                                </a>
-                                                <input type="hidden" value="' . $object["id"] . '" name="add_wish">
+                                                </a>';
+
+                                                $sql = "SELECT * FROM wishlist WHERE user_id=".$_SESSION['id']." AND item_id =".$object['id'];
+                                                $res = mysqli_query($conn,$sql);
+                                                if(mysqli_num_rows($res) == 1){
+                                                    echo '<p>already in wishlist</p>';
+                                                }else{
+
+
+                                                echo '<input type="hidden" value="' . $object["id"] . '" name="add_wish">
                                                 <button type="submit" class="btn btn-danger btn-sm mb-2" data-mdb-toggle="tooltip" title="Move to the wish list">
                                                 <i class="bi bi-heart"></i>
-                                                </button>
-                                    <!-- Data -->
+                                                </button>';
+                                                }
+
+                                    echo '<!-- Data -->
                                         </div>
 
                                         <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">

@@ -54,7 +54,7 @@ $sum = $_POST['sum'];
 <div class="card">
   <div class="card-body mx-4">
     <div class="container">
-      <p class="my-5 mx-5" style="font-size: 30px;">Thank for your purchase</p>
+      <p class="my-5 mx-5" style="font-size: 30px;">Thanks for your purchase</p>
       <div class="row">
         <ul class="list-unstyled">
           <li class="text-black"><?php echo $_SESSION['Username']?></li>

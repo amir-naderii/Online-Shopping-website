@@ -9,7 +9,6 @@ $id = $_GET['edit'];
 $sql = 'SELECT * from items where id=' . $id;
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);
-
 if (isset($_POST['upload'])) {
     $title = $_POST['name'];
     $price = $_POST['price'];
@@ -29,7 +28,7 @@ if (isset($_POST['upload'])) {
         $temp = explode(".", $filename);
         $filename = $title . rand() . '.' . end($temp);
         $tempname = $_FILES["uploadfile"]["tmp_name"];
-        $folder = "./image/" . $filename;
+        $folder = "./pics/" . $filename;
     }
 
     $query = "UPDATE items set title='$title', price=$price, location='$folder', stock=$noitem, category_id=$category where id=" . $id;
@@ -77,7 +76,7 @@ if (isset($_POST['upload'])) {
         <div class="row flex-nowrap">
             <?php include "admin_sidebar.php" ?>
             <div class="col py-3">
-                <form style="margin: 5% 25% 0% 25%; background-color: white; padding:1rem; border-radius:1rem;" method="POST">
+                <form style="margin: 5% 25% 0% 25%; background-color: white; padding:1rem; border-radius:1rem;" method="POST" enctype='multipart/form-data'>
 
                     <?php
                     $id = $_GET['edit'];
@@ -119,7 +118,7 @@ if (isset($_POST['upload'])) {
                     </div>
                     <div class="form-group" style="margin-top:2rem;">
                         <label for="pic">Picture</label><br>
-                        <input type="file" class="form-control-file" id="item-pic" accept="image/*" name="pic">
+                        <input type="file" class="form-control-file" id="item-pic" accept="images/*" name="pic">
                     </div>
 
                     <p><?php echo $msg; ?></p>

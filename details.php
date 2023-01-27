@@ -114,7 +114,11 @@ if (isset($_POST['review'])) {
     <section class="py-5">
         <div class="container px-4 px-lg-5 my-5">
             <div class="row gx-4 gx-lg-5 align-items-center">
-                <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" <?php echo "src=" . $theItem['location'] ?> alt="..." /></div>
+                
+                <div class="col-md-6">
+                <?php echo '<img class="card-img-top mb-5 mb-md-0"src="'. $theItem['location'].'" alt="..." />'
+                ?>
+                    </div>
                 <div class="col-md-6">
                     <div class="small mb-1"><?php echo $cat['title'] ?></div>
                     <h1 class="display-5 fw-bolder"><?php echo $theItem['title'] ?></h1>
@@ -127,22 +131,34 @@ if (isset($_POST['review'])) {
                             if ($theItem['stock'] == 0) {
                                 echo '<p>sold out</p>';
                             } else {
+                                $sql = "SELECT * FROM cart WHERE user_id=".$_SESSION['id']." AND item_id =".$theItem['id'];
+                                $res = mysqli_query($conn,$sql);
+                                if(mysqli_num_rows($res) == 1){
+                                    echo '<p>already in cart</p>';
+                                }else{
                             ?>
                             <input name="cart" type="hidden" <?php echo 'value="' . $theItem['id'] . '"' ?>>
                             <button class="btn btn-outline-dark flex-shrink-0" type="submit">
                                 <i class="bi-cart-fill me-1"></i>
                                 Add to cart
                             </button>
-                            <?php } ?>
+                            <?php }} ?>
                         </div>
                     </form>
                     <form <?php echo 'action="details.php?id=' . $_GET['id'] . '"' ?> method="post">
                         <div class="d-flex" style="margin-top:1rem;">
+                        <?php
+                        $sql = "SELECT * FROM wishlist WHERE user_id=".$_SESSION['id']." AND item_id =".$theItem['id'];
+                                $res = mysqli_query($conn,$sql);
+                                if(mysqli_num_rows($res) == 1){
+                                    echo '<p>already in wish list</p>';
+                                }else{?>
                             <input name="add_wish" type="hidden" <?php echo 'value="' . $theItem['id'] . '"' ?>>
                             <button class="btn btn-outline-dark flex-shrink-0" type="submit">
                                 <i class="bi-heart me-1"></i>
                                 Add to wish list
                             </button>
+                            <?php } ?>
                         </div>
                     </form>
                 </div>
